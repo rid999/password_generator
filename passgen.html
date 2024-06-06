@@ -24,6 +24,15 @@
             padding: 10px;
             border-radius: 5px;
         }
+        .copy-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -50,6 +59,7 @@
         </form>
 
         <div class="output" id="output"></div>
+        <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
     </div>
 
     <script>
@@ -88,6 +98,17 @@
             }
 
             document.getElementById('output').textContent = passwords;
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('output');
+            const textArea = document.createElement('textarea');
+            textArea.value = output.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Passwords copied to clipboard!');
         }
     </script>
 </body>
